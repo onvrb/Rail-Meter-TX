@@ -11,7 +11,7 @@ services:
       - DEV_BYTESIZE=8              # opcional
       - DEV_STOPBITS=1              # opcional
       - DEV_TIMEOUT=1               # opcional
-      - DRY_RUN=False               # opcional
+      - DRY_RUN=0                   # opcional
       - URL="http://localhost:8086"
       - PORT=80
       - TOKEN="XXXX"

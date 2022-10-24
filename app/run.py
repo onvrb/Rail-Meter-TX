@@ -9,22 +9,22 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from DTSU666_2019 import dict
 
 dev_location = environ.get('DEV_PATH', '/dev/ttyUSB0')
-dev_slave_addr = environ.get('DEV_SLAVE_ADDR', 1)
+dev_slave_addr = int(environ.get('DEV_SLAVE_ADDR', 1))
 
 # setup device
 rs485 = minimalmodbus.Instrument(dev_location, dev_slave_addr)
-rs485.serial.baudrate = environ.get('DEV_BAUDRATE', 9600)
-rs485.serial.bytesize = environ.get('DEV_BYTESIZE', 8)
+rs485.serial.baudrate = int(environ.get('DEV_BAUDRATE', 9600))
+rs485.serial.bytesize = int(environ.get('DEV_BYTESIZE', 8))
 rs485.serial.parity   = serial.PARITY_NONE
-rs485.serial.stopbits = environ.get('DEV_STOPBITS', 1)
-rs485.serial.timeout  = environ.get('DEV_TIMEOUT', 1)
+rs485.serial.stopbits = int(environ.get('DEV_STOPBITS', 1))
+rs485.serial.timeout  = int(environ.get('DEV_TIMEOUT', 1))
 
 # good practice
 rs485.clear_buffers_before_each_transaction = True
 
 # influxdb envs
 url = environ.get('URL')
-port = environ.get('PORT')
+port = int(environ.get('PORT'))
 token = environ.get('TOKEN')
 org = environ.get('ORG')
 bucket = environ.get('BUCKET')
@@ -32,9 +32,9 @@ measurement = environ.get('MEASUREMENT')
 tags = environ.get('TAGS')
 schema = measurement + tags
 
-read_freq = environ.get('READ_FREQ', 10)
+read_freq = int(environ.get('READ_FREQ', 10))
 
-dry_run = environ.get('DRY_RUN', False)
+dry_run = int(environ.get('DRY_RUN', 0))
 
 printed_stats_today = False
 read_error_session = 0
@@ -61,12 +61,12 @@ while True:
 
         payload.append(f"{measurement},{tags} {param}={value}")
 
-    if dry_run:
+    if dry_run!=0:
         print(payload)
         quit()
 
     try:
-        with InfluxDBClient(url=url, port=443, token=token, org=org, ssl=True) as client:
+        with InfluxDBClient(url=url, port=port, token=token, org=org, ssl=True) as client:
             write_api = client.write_api(write_options=SYNCHRONOUS)
 
             write_api.write(bucket, org, payload) # send payload
