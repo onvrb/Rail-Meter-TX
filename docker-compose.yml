@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+  rail-meter-tx:
+    container_name: rail-meter-tx
+    image: ghcr.io/onvrb/rail-meter-tx:main
+    environment:
+      - DEV_PATH='/dev/ttyUSB0'     # opcional
+      - DEV_SLAVE_ADDR=1            # opcional
+      - DEV_BAUDRATE=9600           # opcional
+      - DEV_BYTESIZE=8              # opcional
+      - DEV_STOPBITS=1              # opcional
+      - DEV_TIMEOUT=1               # opcional
+      - DRY_RUN=False               # opcional
+      - URL="http://localhost:8086"
+      - PORT=80
+      - TOKEN="XXXX"
+      - ORG="org"
+      - BUCKET="bucket-name"
+      - MEASUREMENT="measurement"
+      - TAGS="tags"
+      - READ_FREQ=10                # opcional
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    restart: unless-stopped
