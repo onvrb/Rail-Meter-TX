@@ -1,0 +1,3 @@
+serial
+minimalmodbus
+influxdb-client
