@@ -1,8 +1,8 @@
 import serial
 import minimalmodbus
 from os import environ
-from time import time, sleep, strftime
 from datetime import datetime
+from time import time, sleep, strftime
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
@@ -34,7 +34,7 @@ schema = measurement + tags
 
 read_freq = environ.get('READ_FREQ', 10)
 
-debug = environ.get('DEBUG', False)
+dry_run = environ.get('DRY_RUN', False)
 
 printed_stats_today = False
 read_error_session = 0
@@ -48,7 +48,7 @@ def timed_print(my_input):
 
 while True:
     payload = []
-    for param in dict:
+    for param in dict: # create payload
         try:
             value = rs485.read_float(dict[param]['address'])    # read value
             value = value * dict[param]['multiplier']           # scale value
@@ -57,11 +57,11 @@ while True:
             value = 0
             read_error_session += 1
             read_error_this_week += 1
-            # date
             timed_print(f'Error reading {param}: {e}')
-        payload.append(f"{measurement},{tags} {param}={value}")  # create payload
 
-    if debug:
+        payload.append(f"{measurement},{tags} {param}={value}")
+
+    if dry_run:
         print(payload)
         quit()
 
