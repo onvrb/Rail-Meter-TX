@@ -12,7 +12,7 @@ services:
       - DEV_STOPBITS=1              # opcional
       - DEV_TIMEOUT=1               # opcional
       - DRY_RUN=0                   # opcional
-      - URL="http://localhost:8086"
+      - URL=http://localhost:8086
       - PORT=80
       - TOKEN="XXXX"
       - ORG="org"
