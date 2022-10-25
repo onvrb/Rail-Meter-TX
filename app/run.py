@@ -96,8 +96,9 @@ while True:
         if read_error_session > 0 or write_error_session > 0:
             timed_print('Error upon first loop, quitting')
             quit()
-        timed_print('Service started and successfully sent first payload')
-        print(f'Sending data every {read_freq} seconds')
-        start=False
+        else:
+            timed_print('Service started and successfully sent first payload')
+            print(f'Sending data every {read_freq} seconds')
+            start=False
 
     sleep(read_freq)
