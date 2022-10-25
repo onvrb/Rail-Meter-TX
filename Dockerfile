@@ -8,4 +8,4 @@ COPY app /app
 
 WORKDIR /app
 
-CMD ["python", "u", "run.py"]
+CMD ["python", "-u", "run.py"]
