@@ -6,7 +6,18 @@ from time import time, sleep, strftime
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-from DTSU666_2019 import dict
+# import all dicts
+from DTSU666_2019 import *
+
+dict_type = environ.get('DICT_TYPE')
+
+if dict_type is None or dict_type == '' or dict_type == 'three_phase':
+    dict = three_phase
+if dict_type == 'single_phase':
+    dict = single_phase
+
+
+
 
 dev_location = environ.get('DEV_PATH', '/dev/ttyUSB0')
 dev_slave_addr = int(environ.get('DEV_SLAVE_ADDR', 1))
