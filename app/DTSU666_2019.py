@@ -1,4 +1,4 @@
-three_phase={
+three_phase_dict={
     "Volts_AB": {"id": "Volts_AB", "address": 0x2000, "multiplier": 0.1, "unit": "V", "decimals": 1},
     "Volts_BC": {"id": "Volts_BC", "address": 0x2002, "multiplier": 0.1, "unit": "V", "decimals": 1},
     "Volts_CA": {"id": "Volts_CA", "address": 0x2004, "multiplier": 0.1, "unit": "V", "decimals": 1},
@@ -37,7 +37,7 @@ three_phase={
     # "Total_Q4_kVArh": {"id": "Total_Q4_kVArh", "address": 0x1050, "multiplier": 1, "unit": "kVArh", "decimals": 3},
 }
 
-single_phase={
+single_phase_dict={
     # "Volts_AB": {"id": "Volts_AB", "address": 0x2000, "multiplier": 0.1, "unit": "V", "decimals": 1},
     # "Volts_BC": {"id": "Volts_BC", "address": 0x2002, "multiplier": 0.1, "unit": "V", "decimals": 1},
     # "Volts_CA": {"id": "Volts_CA", "address": 0x2004, "multiplier": 0.1, "unit": "V", "decimals": 1},
