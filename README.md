@@ -40,6 +40,7 @@ services:
       - DEV_STOPBITS=1              # optional
       - DEV_TIMEOUT=1               # optional
       - DRY_RUN=0                   # optional
+      - DICT_TYPE=three_phase       # three_phase or single_phase
       - URL=http://localhost:8086
       - PORT=80
       - TOKEN="XXXX"
